@@ -87,7 +87,7 @@ project "test"
       ROOT .. "/vendor/**",
    }
    -- link
-   links { PROJECT_NAME, --[[ INSERT ADDITIONAL LINKS HERE ]] }
+   links { PRJ_NAME, --[[ INSERT ADDITIONAL LINKS HERE ]] }
    -- config
    -- config :: debug
    filter "configurations:debug"

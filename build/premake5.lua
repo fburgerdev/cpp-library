@@ -4,6 +4,8 @@ PRJ_NAME = "PROJECT" --[[ MODIFY ]]
 DEFAULT_TEST = "test" --[[ MODIFY ]]
 -- workspace
 workspace(PRJ_NAME)
+   -- build options
+   configurations { "debug", "release", "dist" }
    -- startproject
    startproject(DEFAULT_TEST)
    -- console
@@ -21,12 +23,14 @@ workspace(PRJ_NAME)
    files {
       ROOT .. "/vendor/**",
    }
-   -- obj
-   objdir(ROOT .. "/bin/obj")
+   -- bin
+   -- bin :: targetdir
+   targetdir(ROOT .. "/bin/%{cfg.buildcfg}/%{prj.name}")
+   -- bin :: objdir
+   objdir(ROOT .. "/bin/obj/%{cfg.system}_%{cfg.buildcfg}/%{prj.name}")
    -- debug
    debugger "GDB"
    -- config
-   configurations { "debug", "release", "dist" }
    -- config :: debug
    filter "configurations:debug"
       -- symbols
@@ -64,41 +68,19 @@ project(PRJ_NAME)
       ROOT .. "/src/**",
       ROOT .. "/vendor/**",
    }
-   -- config
-   -- config :: debug
-   filter "configurations:debug"
-      -- targetdir
-      targetdir(ROOT .. "/lib/debug/")
-   -- config :: fast
-   filter "configurations:release"
-      -- targetdir
-      targetdir(ROOT .. "/lib/release/")
-   -- config :: dist
-   filter "configurations:dist"
-      -- targetdir
-      targetdir(ROOT .. "/lib/dist/")
+   -- obj
+   objdir(ROOT .. "/bin/obj/%{cfg.system}_%{cfg.buildcfg}")
+   -- targetdir
+   targetdir(ROOT .. "/lib/%{cfg.buildcfg}")
 -- project :: tests
 -- project :: tests :: test
 project "test"
    -- files
    files {
-      ROOT .. "/tests/test.cpp",
+      ROOT .. "/tests/%{prj.name}.cpp",
       --[[ INSERT ADDITIONAL FILES HERE ]]
       ROOT .. "/vendor/**",
    }
    -- link
    links { PRJ_NAME, --[[ INSERT ADDITIONAL LINKS HERE ]] }
-   -- config
-   -- config :: debug
-   filter "configurations:debug"
-      -- targetdir
-      targetdir(ROOT .. "/bin/debug/test")
-   -- config :: fast
-   filter "configurations:release"
-      -- targetdir
-      targetdir(ROOT .. "/bin/release/test")
-   -- config :: dist
-   filter "configurations:dist"
-      -- targetdir
-      targetdir(ROOT .. "/bin/dist/test")
 --[[ INSERT ADDITIONAL TESTS HERE ]]

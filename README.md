@@ -2,7 +2,7 @@
 What is the description of this project?
 
 ## Features
-Insert feature bullet points.
+Insert feature bullet points here.
 
 ## Support
 - Linux (native)
@@ -16,13 +16,25 @@ git clone git@github.com:fburgerdev/PROJECT.git
 ```
 
 ## Project Settings
-- Add to your include directories: "PATH_TO_REPO/include" 
-- Add to your library directories: "PATH_TO_REPO/lib/CONFIG/" 
+- Add include directory: "PATH_TO_REPO/include" 
+- Add library directory: "PATH_TO_REPO/lib/CONFIG/" 
 - Link library:
     - "libPROJECT.a" for linux
     - "PROJECT.lib" for windows
 
-## Or Build Yourself
-You need premake5 installed on your device.
+## Build Yourself (Optional)
+### Linux
+In the _build_ folder, execute the following command in the console
+``` console
+make config=CONFIG
+```
+If you have not installed _make_, execute this command in the console first
+``` console
+sudo apt-get install make -y
+```
 
-Insert build instructions.
+### Windows
+Open the file "build/PROJECT.sln" with Visual Studio.
+After you have selected your desired configuration, click on _Build > Build_ Solution.
+
+__Note:__ Make sure you have the _Desktop developement with C++_ workload installed.

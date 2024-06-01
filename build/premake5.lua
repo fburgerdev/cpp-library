@@ -1,9 +1,9 @@
 -- premake5.lua
 ROOT = ".."
-PRJ_NAME = "PROJECT" --[[ MODIFY ]]
+PROJECT_NAME = "PROJECT" --[[ MODIFY ]]
 DEFAULT_TEST = "test" --[[ MODIFY ]]
 -- workspace
-workspace(PRJ_NAME)
+workspace(PROJECT_NAME)
    -- build options
    configurations { "debug", "release", "dist" }
    -- startproject
@@ -12,20 +12,15 @@ workspace(PRJ_NAME)
    kind "ConsoleApp"
    -- cpp
    language "C++"
-   cppdialect "C++Latest"
+   cppdialect "C++20"
    -- includedirs
    includedirs {
-      ROOT,
       ROOT .. "/src",
-      ROOT .. "/vendor",
-   }
-   -- files
-   files {
-      ROOT .. "/vendor/**",
+      ROOT .. "/vendor/*/include",
    }
    -- bin
    -- bin :: targetdir
-   targetdir(ROOT .. "/bin/%{cfg.buildcfg}/%{prj.name}")
+   targetdir(ROOT .. "/bin/%{cfg.buildcfg}_%{prj.name}")
    -- bin :: objdir
    objdir(ROOT .. "/bin/obj/%{cfg.system}_%{cfg.buildcfg}/%{prj.name}")
    -- debug
@@ -55,32 +50,35 @@ workspace(PRJ_NAME)
       linkoptions { "-Ofast" }
 -- project
 -- project :: lib
-project(PRJ_NAME)
+project(PROJECT_NAME)
    -- staticlib
    kind "StaticLib"
    -- includedirs
    includedirs {
-      ROOT .. "/src",
-      ROOT .. "/vendor",
+      ROOT .. "/vendor/*/include",
    }
    -- files
    files {
       ROOT .. "/src/**",
-      ROOT .. "/vendor/**",
    }
-   -- obj
-   objdir(ROOT .. "/bin/obj/%{cfg.system}_%{cfg.buildcfg}")
-   -- targetdir
+   -- bin
+   -- bin :: targetdir
    targetdir(ROOT .. "/lib/%{cfg.buildcfg}")
+   -- bin :: obj
+   objdir(ROOT .. "/bin/obj/%{cfg.system}_%{cfg.buildcfg}")
 -- project :: tests
--- project :: tests :: test
 project "test"
    -- files
    files {
       ROOT .. "/tests/%{prj.name}.cpp",
       --[[ INSERT ADDITIONAL FILES HERE ]]
-      ROOT .. "/vendor/**",
    }
-   -- link
-   links { PRJ_NAME, --[[ INSERT ADDITIONAL LINKS HERE ]] }
+   -- libdirs
+   libdirs {
+      ROOT .. "lib/%{cfg.system}",
+      ROOT .. "/vendor/*/lib/%{cfg.system}",
+      --[[ INSERT ADDITIONAL LIB DIRECTORIES HERE ]]
+   }
+   -- links
+   links { PROJECT_NAME, --[[ INSERT ADDITIONAL LIBS HERE ]] }
 --[[ INSERT ADDITIONAL TESTS HERE ]]

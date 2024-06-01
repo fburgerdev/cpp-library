@@ -1,7 +1,11 @@
 #pragma once
+// ranges
+#include <ranges>
+// types
 #include <memory> // address, int, uint
 #include <string> // string
 #include <string_view> // string_view
+// container
 #include <array> // Array
 #include <vector> // List
 #include <stack> // Stack
@@ -11,27 +15,36 @@
 #include <map> // Map
 #include <set> // HashSet
 #include <unordered_map> // HashMap
+// function
+#include <functional> // function
+// templates
+#include <optional> // Opt
+// debug
+#include <iostream> // cout, endl
 
-namespace PROJECT {
-    // Types
-    // Types :: address
+namespace NAMESPACE {
+    // ranges
+    namespace stdr = std::ranges;
+
+    // types
+    // types :: address
     using address = std::size_t;
-    // Types :: int
+    // types :: int
     using int8 = std::int8_t;
     using int16 = std::int16_t;
     using int32 = std::int32_t;
     using int64 = std::int64_t;
-    // Types :: uint
+    // types :: uint
     using uint8 = std::uint8_t;
     using uint16 = std::uint16_t;
     using uint32 = std::uint32_t;
     using uint64 = std::uint64_t;
-    // Types :: string
+    // types :: string
     using string = std::string;
-    // Types :: string_view
     using string_view = std::string_view;
-    // Container
-    // Container :: Sequence
+
+    // container
+    // container :: sequential
     template<typename T, address N>
     using Array = std::array<T, N>;
     template<typename T>
@@ -42,14 +55,36 @@ namespace PROJECT {
     using Queue = std::queue<T>;
     template<typename T>
     using Deque = std::deque<T>;
-    // Container :: Tree
+    // container :: tree
     template<typename T>
     using Set = std::set<T>;
     template<typename Key, typename Value>
     using Map = std::map<Key, Value>;
-    // Container :: Hash
+    // container :: hash
     template<typename T>
     using HashSet = std::unordered_set<T>;
     template<typename Key, typename Value>
     using HashMap = std::unordered_map<Key, Value>;
+
+    // move semantics
+    using std::forward;
+    using std::move;
+
+    // smart pointers
+    using std::make_unique;
+    using std::make_shared;
+    using std::unique_ptr;
+    using std::shared_ptr;
+    using std::weak_ptr;
+
+    // function
+    using std::function;
+
+    // templates
+    template<typename T>
+    using Opt = std::optional<T>;
+
+    // debug
+    using std::cout;
+    using std::endl;
 }

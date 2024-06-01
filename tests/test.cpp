@@ -1,7 +1,7 @@
 #include "common.hpp"
-#include <iostream> // std::cout, std::endl
 
+using namespace NAMESPACE;
 int main() {
-    std::cout << "Hello World!" << std::endl;
+    cout << "Hello World!" << endl;
     return EXIT_SUCCESS;
 }

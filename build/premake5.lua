@@ -76,7 +76,7 @@ project "test"
    -- libdirs
    libdirs {
       ROOT .. "lib/%{cfg.system}",
-      ROOT .. "/vendor/*/lib/%{cfg.system}",
+      ROOT .. "/vendor/*/lib/%{cfg.buildcfg}",
       --[[ INSERT ADDITIONAL LIB DIRECTORIES HERE ]]
    }
    -- links

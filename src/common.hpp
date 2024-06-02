@@ -1,11 +1,8 @@
 #pragma once
-// ranges
-#include <ranges>
-// types
+#include <ranges> // stdr
 #include <memory> // address, int, uint
 #include <string> // string
 #include <string_view> // string_view
-// container
 #include <array> // Array
 #include <vector> // List
 #include <stack> // Stack
@@ -15,11 +12,8 @@
 #include <map> // Map
 #include <set> // HashSet
 #include <unordered_map> // HashMap
-// function
 #include <functional> // function
-// templates
 #include <optional> // Opt
-// debug
 #include <iostream> // cout, endl
 
 namespace NAMESPACE {

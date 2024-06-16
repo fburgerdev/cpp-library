@@ -9,6 +9,7 @@ namespace NAMESPACE {
     // INSERT YOUR INTERFACE HERE
 }
 ```
+
 # Examples
 ## EXAMPLE TITLE
 ```cpp

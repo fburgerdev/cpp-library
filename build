@@ -1,4 +1,7 @@
 #! /bin/bash
+# hppmerge
+python3 cpp-library/src/merge.py
+
 # prepremake
 python3 cpp-library/src/prepremake.py &&
 # premake

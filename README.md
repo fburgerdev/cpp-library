@@ -5,8 +5,8 @@ This project allows you to develop C++ libraries quickly and in a standartized m
 
 ## Usage
 ### Example Configuration
+_MY_REPO/cpp-library.json_
 ```json
-// MY_REPO/cpp-library.json
 {
     "project": "MyProject",
     "author": "Florian Burger (@fburgerdev)",
@@ -82,6 +82,6 @@ For an existing project, execute
 git submodule add git@github.com:fburgerdev/cpp-library.git
 ```
 and for a new project, execute the following:
-```
+```console
 git clone --recursive -b template git@github.com:fburgerdev/cpp-library.git
 ```

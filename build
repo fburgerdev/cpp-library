@@ -1,0 +1,9 @@
+#! /bin/bash
+# prepremake
+python3 cpp-library/src/prepremake.py &&
+# premake
+premake5 gmake --file="build/premake5.lua" && premake5 vs2022 --file="build/premake5.lua" &&
+# make
+make -C build config=debug && make -C build config=release && make -C build config=dist &&
+# success
+echo "** build successfull **"

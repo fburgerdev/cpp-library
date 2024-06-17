@@ -1,0 +1,24 @@
+#! /bin/bash
+# options
+CONFIG=debug
+TEST=test
+while getopts "c:t:" opt; do
+    case "${opt}" in
+        c)
+            CONFIG=${OPTARG};;
+        t)
+            TEST=${OPTARG};;
+    esac
+done
+
+# hppmerge
+python3 cpp-library/src/merge.py
+
+# prepremake
+python3 cpp-library/src/prepremake.py $TEST &&
+# premake
+premake5 gmake --file="build/premake5.lua" &&
+# make
+make -C build config=$CONFIG &&
+# bin
+bin/tests/linux_${CONFIG}/${TEST}

@@ -1,3 +1,3 @@
-[submodule "vendor/hppmerge"]
-	path = vendor/hppmerge
-	url = git@github.com:fburgerdev/hppmerge.git
+[submodule "modules/hppmerge"]
+	path = modules/hppmerge
+	url = git@github.com:fburgerdev/hppmerge

@@ -45,8 +45,8 @@ if create_readme:
 # LICENSE
 with open("LICENSE", "w") as output:
     license = open(f'{TEMPLATES}/LICENSE').read()
-    license = license.replace("AUTHOR", workspace_config["author"])
-    license = license.replace("YEAR", str(datetime.date.today().year))
+    license = license.replace("_AUTHOR_", workspace_config["author"])
+    license = license.replace("_YEAR_", str(datetime.date.today().year))
     output.write(license)
 # src/common.hpp
 pathlib.Path("src").mkdir(parents=True, exist_ok=True)

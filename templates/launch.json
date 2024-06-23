@@ -3,7 +3,7 @@
     "type": "cppdbg",
     "request": "launch",
     "cwd": ".",
-    "program": "${workspaceFolder}/bin/debug_TEST/TEST",
+    "program": "${workspaceFolder}/bin/tests/linux_debug/TEST",
     "MIMode": "gdb",
     "setupCommands": [
         {

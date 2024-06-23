@@ -5,6 +5,7 @@ project "TEST_NAME"
    -- include directories
    includedirs {
       ROOT .. "/include",
+      ROOT .. "/src",
       ROOT .. "/modules/*/include",
       ROOT .. "/vendor/*/include"
    }

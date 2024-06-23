@@ -1,4 +1,4 @@
-import json, os
+import json, pathlib, os
 
 # name
 workspace_config = json.load(open('cpp-library.json'))

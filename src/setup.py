@@ -55,8 +55,8 @@ with open("src/common.hpp", "w") as output:
     common = common.replace("NAMESPACE", workspace_config["namespace"])
     output.write(common)
 # src/PROJECT.hpp
-if not os.path.isfile(f"src/{workspace_config["project"].lower()}.hpp"):
-    with open(f"src/{workspace_config["project"].lower()}.hpp", "w") as output:
+if not os.path.isfile(f"src/{workspace_config['project'].lower()}.hpp"):
+    with open(f"src/{workspace_config['project'].lower()}.hpp", "w") as output:
         merge = open(f'{TEMPLATES}/merge.hpp').read()
         output.write(merge)
 # .vscode

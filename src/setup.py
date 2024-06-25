@@ -54,10 +54,9 @@ with open("src/common.hpp", "w") as output:
     common = open(f'{TEMPLATES}/common.hpp').read()
     common = common.replace("NAMESPACE", workspace_config["namespace"])
     output.write(common)
-# include/merge.hpp
-if not os.path.isfile("include/merge.hpp"):
-    pathlib.Path("include").mkdir(parents=True, exist_ok=True)
-    with open("include/merge.hpp", "w") as output:
+# src/PROJECT.hpp
+if not os.path.isfile(f"src/{workspace_config["project"].lower()}.hpp"):
+    with open(f"src/{workspace_config["project"].lower()}.hpp", "w") as output:
         merge = open(f'{TEMPLATES}/merge.hpp').read()
         output.write(merge)
 # .vscode

@@ -5,12 +5,6 @@ describe your project ...
 
 DEPENDANCIES
 
-## Interface
-```cpp
-namespace NAMESPACE {
-    // INSERT YOUR INTERFACE HERE
-}
-```
 ## Usage
 ### Use Case 1
 ```cpp

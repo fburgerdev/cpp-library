@@ -21,7 +21,7 @@
 #include <optional> // Opt
 #include <iostream> // cout, endl
 
-namespace NAMESPACE {
+namespace __NAMESPACE__ {
     // ranges
     namespace stdr = std::ranges;
 

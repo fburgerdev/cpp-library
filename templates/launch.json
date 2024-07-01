@@ -1,9 +1,9 @@
 {
-    "name": "debug: TEST",
+    "name": "debug: __TEST_NAME__",
     "type": "cppdbg",
     "request": "launch",
     "cwd": ".",
-    "program": "${workspaceFolder}/bin/tests/linux_debug/TEST",
+    "program": "${workspaceFolder}/bin/tests/linux_debug/__TEST_NAME__",
     "MIMode": "gdb",
     "setupCommands": [
         {

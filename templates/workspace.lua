@@ -1,11 +1,11 @@
 -- premake5.lua
 ROOT = ".."
 -- workspace
-workspace "WORKSPACE_NAME"
+workspace "__PROJECT_NAME__"
    -- build options
    configurations { "debug", "release", "dist" }
    -- startproject
-   startproject "DEFAULT_TEST"
+   startproject "__START_PROJECT__"
    -- cpp
    language "C++"
    cppdialect "C++Latest"
@@ -27,7 +27,7 @@ workspace "WORKSPACE_NAME"
       defines { "CONFIG_DIST" }
       linkoptions { "-Ofast" }
 -- project lib
-project "WORKSPACE_NAME"
+project "__PROJECT_NAME__"
    -- static library
    kind "StaticLib"
    -- include directories

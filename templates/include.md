@@ -1,3 +1,3 @@
-- for _NAME_
-    - add _modules/NAME/lib/[config]_ to your include directories
-    - link the library _libNAME.a_ or _NAME.lib_
+- for __LIB_NAME__
+    - add _modules/__LIB_NAME__/lib/[config]_ to your include directories
+    - link the library _lib__LIB_NAME__.a_ or ___LIB_NAME__.lib_

@@ -1,9 +1,9 @@
-# PROJECT
+# __PROJECT__
 >C++ library for ...
 
 describe your project ...
 
-DEPENDANCIES
+__DEPENDANCIES__
 
 ## Usage
 ### Use Case 1
@@ -18,11 +18,11 @@ DEPENDANCIES
 
 ## Include this Library
 In your c++ project
-- add _include/PROJECTLOWERCASE_ to your include directories
+- add _include/__PROJECT_NAME__.a_ to your include directories
 - add _lib/[config]_ to your library directories (depending on your configuration)
-- link the library _libPROJECTLOWERCASE.a_ (for linux) and _PROJECTLOWERCASE.lib_ (for windows)
+- link the library _lib__PROJECT_NAME__.a_ (for linux) and ___PROJECT_NAME__.lib_ (for windows)
 
-INCLUDES
+__INCLUDES__
 
 ## Build (Optional)
 #### Using Linux (Debian)
@@ -36,7 +36,7 @@ sudo apt-get install make -y
 ```
 
 #### Using Windows
-Open the _build/PROJECTLOWERCASE.sln_ solution with Visual Studio.
+Open the _build/__PROJECT_NAME__.sln_ solution with Visual Studio.
 
 After selecting your desired configuration, click on _Build > Build Solution_.
 

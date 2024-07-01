@@ -1,5 +1,5 @@
--- tests :: PROJECT_NAME
-project "TEST_NAME"
+-- tests :: __TEST_NAME__
+project "__TEST_NAME__"
    -- console
    kind "ConsoleApp"
    -- include directories
@@ -17,10 +17,12 @@ project "TEST_NAME"
    }
    -- files
    files {
-      --[[ INSERT ADDITIONAL FILES HERE ]]
+      __FILES__ --[[ INSERT ADDITIONAL FILES HERE ]]
    }
    -- links
-   links { "WORKSPACE_NAME", --[[ INSERT ADDITIONAL LINKS HERE ]] }
+   links { "__PROJECT_NAME__", __LINKS__ --[[ INSERT ADDITIONAL LINKS HERE ]] }
+   -- defines
+   defines { __DEFINES__ }
    -- binaries
    targetdir(ROOT .. "/bin/tests/%{cfg.system}_%{cfg.buildcfg}")
    objdir(ROOT .. "/bin/tests/%{cfg.system}_%{cfg.buildcfg}/obj")

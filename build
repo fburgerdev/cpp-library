@@ -1,9 +1,9 @@
 #! /bin/bash
 # hppmerge
-python3 cpp-library/src/merge.py &&
+python3 cpp-library/scripts/merge.py
 
 # prepremake
-python3 cpp-library/src/prepremake.py &&
+python3 cpp-library/scripts/prepremake.py &&
 # premake
 premake5 gmake --file="build/premake5.lua" && premake5 vs2022 --file="build/premake5.lua" &&
 # make

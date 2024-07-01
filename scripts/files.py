@@ -2,7 +2,7 @@ from pathlib import Path
 from os import path
 
 # directories
-ROOT = f'{path.dirname(__file__)}/../'
+ROOT = f'{path.dirname(__file__)}/..'
 TEMPLATES = f'{ROOT}/templates'
 HPPMERGE = f'{ROOT}/modules/hppmerge'
 

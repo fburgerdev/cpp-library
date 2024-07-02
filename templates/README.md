@@ -18,7 +18,7 @@ __DEPENDANCIES__
 
 ## Include this Library
 In your c++ project
-- add _include/__PROJECT_NAME__.a_ to your include directories
+- add _include/__PROJECT_NAME___ to your include directories
 - add _lib/[config]_ to your library directories (depending on your configuration)
 - link the library _lib__PROJECT_NAME__.a_ (for linux) and ___PROJECT_NAME__.lib_ (for windows)
 

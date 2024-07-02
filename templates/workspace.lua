@@ -11,6 +11,8 @@ workspace "__PROJECT_NAME__"
    cppdialect "C++Latest"
    -- debug
    debugger "GDB"
+   -- defines
+   defines { __DEFINES__ }
    -- config
    -- config :: debug
    filter "configurations:debug"

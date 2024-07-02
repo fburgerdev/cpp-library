@@ -7,6 +7,11 @@ def create_premake(test: Test | None) -> str:
     workspace = read_file(f'{TEMPLATES}/workspace.lua')
     workspace = workspace.replace('__PROJECT_NAME__', config.project)
     workspace = workspace.replace('__START_PROJECT__', test.name if test else config.project)
+    # defines
+    if len(config.defines):
+        workspace = workspace.replace('__DEFINES__', '"' + '", "'.join(test.defines) + '"')
+    else:
+        workspace = workspace.replace('__DEFINES__', '')
     for test in config.tests:
         test_project = read_file(f'{TEMPLATES}/project_test.lua')
         test_project = test_project.replace('__PROJECT_NAME__', config.project)

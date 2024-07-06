@@ -9,19 +9,18 @@ _MY_REPO/cpp-library.json_
 ```json
 {
     "project": "MyProject",
-    "author": "Florian Burger (@fburgerdev)",
-
+    "author": "florian burger (@fburgerdev)",
+    "namespace": "MP",
+    
     "libraries": [
         {
             "name": "math",
             "source": "https://github.com/fburgerdev/math"
         }
     ],
-    "tests": {
-        "test": {
-            "files": [ "test.cpp" ]
-        }
-    }
+    "tests": [
+        { "name": "test", "files": [ "test.cpp" ]}
+    ]
 }
 ```
 ### Setup Workspace
@@ -31,7 +30,7 @@ cpp-library/setup
 This will create the following files:
 - _.vscode/c_cpp_properties.json_ (syncronized with project include directories)
 - _.vscode/launch.json_ (debug configurations for every test specified in config)
-- _include/merge.hpp_ (used by _hppmerge_ to automatically create single include header)
+- _src/[project].hpp_ (used by _hppmerge_ to automatically create single include header)
 - _src/common.hpp_ (header file containing frequently used std includes)
 - _LICENSE_ (MIT license, with author and year of creation)
 - _README.md_ (basic structure, automatic dependancy listing)
@@ -47,7 +46,7 @@ The following compilation steps take place:
 - run _MAKEFILE_
 - executes test program
 
-The single include header will be created by merging the headers in _include/merge.hpp_.
+The single include header will be created by merging the headers in _src/[project].hpp_.
 
 _Options:_
 - _-t_ specifies the name of the test to be build, defaults to _test_
@@ -74,6 +73,7 @@ cpp-library/clean
 This command removes the following directories:
 - _bin_
 - _build_
+- _include_
 - _lib_
 
 ## Include this Library

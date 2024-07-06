@@ -11,6 +11,9 @@ while getopts "c:t:" opt; do
     esac
 done
 
+# hppmerge
+python3 cpp-library/scripts/merge.py
+
 # prepremake
 python3 cpp-library/scripts/prepremake.py $TEST &&
 # premake

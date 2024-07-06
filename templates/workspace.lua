@@ -42,7 +42,7 @@ project "__PROJECT_NAME__"
    -- files
    files {
       ROOT .. "/src/**",
-      ROOT .. "/vendor/**",
+      ROOT .. "/vendor/*/src/**",
    }
    -- binaries
    targetdir(ROOT .. "/lib/%{cfg.buildcfg}")

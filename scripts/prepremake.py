@@ -12,21 +12,22 @@ def create_premake(test: Test | None) -> str:
         workspace = workspace.replace('__DEFINES__', '"' + '", "'.join(test.defines) + '"')
     else:
         workspace = workspace.replace('__DEFINES__', '')
-    for test in config.tests:
+
+    for current_test in [test] if test else config.tests:
         test_project = read_file(f'{TEMPLATES}/project_test.lua')
         test_project = test_project.replace('__PROJECT_NAME__', config.project)
-        test_project = test_project.replace('__TEST_NAME__', test.name)
+        test_project = test_project.replace('__TEST_NAME__', current_test.name)
         # files
-        for file in test.files:
+        for file in current_test.files:
             test_project = test_project.replace('__FILES__', 'ROOT .. "/tests/' + file + '", ' + '__FILES__')
         test_project = test_project.replace('__FILES__', '')
         # libraries
-        for library in test.libraries:
+        for library in current_test.libraries:
             test_project = test_project.replace('__LINKS__', '"' + library.filename + '", ' + '__LINKS__')
         test_project = test_project.replace('__LINKS__', '')
         # defines
-        if len(test.defines):
-            test_project = test_project.replace('__DEFINES__', '"' + '", "'.join(test.defines) + '"')
+        if len(current_test.defines):
+            test_project = test_project.replace('__DEFINES__', '"' + '", "'.join(current_test.defines) + '"')
         else:
             test_project = test_project.replace('__DEFINES__', '')
         workspace += '\n'

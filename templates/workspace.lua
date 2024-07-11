@@ -14,20 +14,27 @@ workspace "__PROJECT_NAME__"
    -- defines
    defines { __DEFINES__ }
    -- config
-   -- config :: debug
+   -- :: debug
    filter "configurations:debug"
       symbols "On"
       defines { "CONFIG_DEBUG" }
-   -- config :: fast
+   -- :: fast
    filter "configurations:release"
       optimize "On"
       defines { "CONFIG_RELEASE" }
       linkoptions{ "-Ofast" }
-   -- config :: dist
+   -- :: dist
    filter "configurations:dist"
       optimize "On"
       defines { "CONFIG_DIST" }
       linkoptions { "-Ofast" }
+   -- system
+   -- :: windows
+   filter "system:windows"
+      defines { "SYSTEM_WINDOWS" }
+   -- :: linux
+   filter "system:linux"
+      defines { "SYSTEM_LINUX" }
 -- project lib
 project "__PROJECT_NAME__"
    -- static library

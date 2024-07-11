@@ -1,4 +1,5 @@
 import json
+from files import *
 
 # Library
 class Library:
@@ -74,6 +75,8 @@ class Config:
         for test in self.tests:
             if test.name == name:
                 return test
+        if path.exists(f'tests/{name}.cpp'):
+            return Test(json.loads(f'{{ "name": "{name}", "files": [ "{name}.cpp" ]}}'), self.libraries, self.defines)
         raise Exception(f'Test {name} not found')
 # global
 config = Config()

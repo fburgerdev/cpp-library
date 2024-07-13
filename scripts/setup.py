@@ -52,6 +52,10 @@ with create_file("src/common.hpp") as output:
     source = source.replace("__NAMESPACE__", config.namespace)
     output.write(source)
 
+# src/common.cpp
+with create_file("src/common.cpp") as output:
+    output.write('#include "common.hpp"')
+
 # src/PROJECT.hpp
 if not path.isfile(f"src/{config.project.lower()}.hpp"):
     with create_file(f"src/{config.project.lower()}.hpp") as output:

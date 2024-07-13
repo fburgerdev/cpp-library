@@ -19,6 +19,9 @@ project "__TEST_NAME__"
    files {
       __FILES__ --[[ INSERT ADDITIONAL FILES HERE ]]
    }
+   -- precompiled headers
+   pchheader "common.hpp"
+   pchsource "common.cpp"
    -- links
    links { "__PROJECT_NAME__", __LINKS__ --[[ INSERT ADDITIONAL LINKS HERE ]] }
    -- defines

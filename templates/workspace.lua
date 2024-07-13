@@ -51,6 +51,9 @@ project "__PROJECT_NAME__"
       ROOT .. "/src/**",
       ROOT .. "/vendor/*/src/**",
    }
+   -- precompiled headers
+   pchheader "common.hpp"
+   pchsource "common.cpp"
    -- binaries
    targetdir(ROOT .. "/lib/%{cfg.buildcfg}")
    objdir(ROOT .. "/bin/%{cfg.system}_%{cfg.buildcfg}")

@@ -34,6 +34,7 @@ namespace __NAMESPACE__ {
     using int32 = std::int32_t;
     using int64 = std::int64_t;
     // types :: uint
+    using uint = unsigned int;
     using uint8 = std::uint8_t;
     using uint16 = std::uint16_t;
     using uint32 = std::uint32_t;

@@ -9,7 +9,7 @@ def create_premake(test: Test | None) -> str:
     workspace = workspace.replace('__START_PROJECT__', test.name if test else config.project)
     # defines
     if len(config.defines):
-        workspace = workspace.replace('__DEFINES__', '"' + '", "'.join(test.defines) + '"')
+        workspace = workspace.replace('__DEFINES__', '"' + '", "'.join(config.defines) + '"')
     else:
         workspace = workspace.replace('__DEFINES__', '')
 

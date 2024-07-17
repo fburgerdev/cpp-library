@@ -57,6 +57,12 @@ namespace __NAMESPACE__ {
     using string = std::string;
     using strview = std::string_view;
 
+    // pair / tuple
+    template<typename T1, typename T2>
+    using Pair = std::pair<T1, T2>;
+    template<typename... TArgs>
+    using Tuple = std::tuple<TArgs...>;
+
     // container
     // :: sequential
     template<typename T, address N>
@@ -118,6 +124,8 @@ namespace __NAMESPACE__ {
     using std::ofstream;
     // :: stringstream
     using strstream = std::stringstream;
+    using istrstream = std::istringstream;
+    using ostrstream = std::ostringstream;
 
     // thread
     using std::mutex;

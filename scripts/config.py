@@ -1,4 +1,6 @@
 import json
+import glob
+from pathlib import Path
 from files import *
 
 # Library
@@ -70,13 +72,20 @@ class Config:
             self.default_test = self.tests[0]
         else:
             self.default_test = None
+
+        used_tests = []
+        for test in self.tests:
+            used_tests += [ Path(f'tests/{file}') for file in test.files ]
+        for filepath in glob.iglob("tests/*.cpp"):
+            path = Path(filepath)
+            if path not in used_tests:
+                test_name = path.name[0:path.name.find('.')]
+                self.tests.append(Test({ "name": test_name, "files": [ path.name ] }, [], []))
     # get_test
     def get_test(self, name: str) -> Test:
         for test in self.tests:
             if test.name == name:
                 return test
-        if path.exists(f'tests/{name}.cpp'):
-            return Test(json.loads(f'{{ "name": "{name}", "files": [ "{name}.cpp" ]}}'), self.libraries, self.defines)
         raise Exception(f'Test {name} not found')
 # global
 config = Config()

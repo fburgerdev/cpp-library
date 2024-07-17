@@ -1,10 +1,8 @@
 {
-    "project": "Example",
-    "author": "Florian Burger (git@fburgerdev)",
-    
-    "tests": {
-        "test": {
-            "files": [ "test.cpp" ]
-        }
-    }
+    "project": "project",
+    "author": "florian burger (git@fburgerdev)",
+
+    "defines": [],
+    "libraries": [],
+    "tests": []
 }

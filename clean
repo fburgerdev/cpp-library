@@ -1,5 +1,5 @@
 #! /bin/bash
 rm -r bin
-rm -r lib
 rm -r build
 rm -r include
+rm -r lib

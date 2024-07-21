@@ -1,24 +1,40 @@
 -- premake5.lua
 ROOT = ".."
+
 -- workspace
 workspace "__PROJECT_NAME__"
-   -- build options
-   configurations { "debug", "release", "dist" }
    -- startproject
    startproject "__START_PROJECT__"
    -- cpp
    language "C++"
-   cppdialect "C++Latest"
+   cppdialect "C++20"
+
    -- debug
    debugger "GDB"
+
    -- defines
    defines { __DEFINES__ }
+
+   -- dependancies
+   -- :: directories
+   libdirs {
+      ROOT .. "/lib/%{cfg.buildcfg}",
+      ROOT .. "/modules/*/lib/%{cfg.buildcfg}",
+      ROOT .. "/vendor/*/lib/%{cfg.buildcfg}"
+   }
+   -- :: libraries
+   links { "__PROJECT_NAME__", __LINKS__ --[[ INSERT ADDITIONAL LINKS HERE ]] }
+
    -- config
+   configurations { "debug", "release", "dist" }
    -- :: debug
    filter "configurations:debug"
       symbols "On"
       defines { "CONFIG_DEBUG" }
-   -- :: fast
+      -- precompiled headers
+      pchheader "common.hpp"
+      pchsource "common.cpp"
+   -- :: release
    filter "configurations:release"
       optimize "On"
       defines { "CONFIG_RELEASE" }
@@ -28,6 +44,7 @@ workspace "__PROJECT_NAME__"
       optimize "On"
       defines { "CONFIG_DIST" }
       linkoptions { "-Ofast" }
+   
    -- system
    -- :: windows
    filter "system:windows"
@@ -35,11 +52,18 @@ workspace "__PROJECT_NAME__"
    -- :: linux
    filter "system:linux"
       defines { "SYSTEM_LINUX" }
+   
+   -- toolset
+   -- :: gcc
+   filter "toolset:gcc"
+      buildoptions { "-Wall", "-Wextra", "-Wpedantic" }
+
 -- project lib
 project "__PROJECT_NAME__"
    -- static library
    kind "StaticLib"
-   -- include directories
+
+   -- include
    includedirs {
       ROOT,
       ROOT .. "/src",
@@ -51,9 +75,7 @@ project "__PROJECT_NAME__"
       ROOT .. "/src/**",
       ROOT .. "/vendor/*/src/**",
    }
-   -- precompiled headers
-   pchheader "common.hpp"
-   pchsource "common.cpp"
+   
    -- binaries
    targetdir(ROOT .. "/lib/%{cfg.buildcfg}")
    objdir(ROOT .. "/bin/%{cfg.system}_%{cfg.buildcfg}")

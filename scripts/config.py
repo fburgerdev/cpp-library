@@ -10,13 +10,15 @@ class Library:
         # name
         self.name = data['name']
         # description
-        self.description = data['description'] if 'description' in data else ''
+        # self.description = data['description'] if 'description' in data else ''
+        # defines
+        self.defines :list[str] = data['defines'] if 'defines' in data else []
         # type
-        self.type = data['type'] if 'type' in data else 'static'
+        # self.type = data['type'] if 'type' in data else 'static'
         # filename
-        self.filename = data['filename'] if 'filename' in data else self.name
+        # self.filename = data['filename'] if 'filename' in data else self.name
         # url
-        self.url = data['url'] if 'url' in data else ''
+        # self.url = data['url'] if 'url' in data else ''
 # Test
 class Test:
     # constructor
@@ -24,7 +26,7 @@ class Test:
         # name
         self.name = data['name']
         # description
-        self.description = data['description'] if 'description' in data else ''
+        # self.description = data['description'] if 'description' in data else ''
         # files
         self.files = data['files']
         # defines
@@ -47,7 +49,7 @@ class Config:
         # project
         self.project = data['project']
         # description
-        self.description = data['description'] if 'description' in data else ''
+        # self.description = data['description'] if 'description' in data else ''
         # author
         self.author = ' '.join([word.capitalize() for word in data['author'].split(' ')]) if 'author' in data else 'Unknwon'
         # namespace
@@ -59,20 +61,15 @@ class Config:
                 self.libraries.append(Library(library))
         # defines
         self.defines :list[str] = data['defines'] if 'defines' in data else []
+        for library in self.libraries:
+            self.defines += library.defines
         # test
         # :: tests
         self.tests :list[Test]= []
         if 'tests' in data:
             for test in data['tests']:
                 self.tests.append(Test(test, self.libraries, self.defines))
-        # :: default_test
-        if 'default-test' in data:
-            self.default_test = self.get_test(data['default-test'])
-        elif len(self.tests) > 0:
-            self.default_test = self.tests[0]
-        else:
-            self.default_test = None
-
+        # :: default tests
         used_tests = []
         for test in self.tests:
             used_tests += [ Path(f'tests/{file}') for file in test.files ]

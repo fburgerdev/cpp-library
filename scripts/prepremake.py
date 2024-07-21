@@ -2,36 +2,58 @@ from config import *
 from files import *
 from sys import argv
 
+# create_test_project
+def create_test_project(test: Test) -> str:
+    test_project = read_file(f'{TEMPLATES}/project_test.lua')
+    
+    # name
+    test_project = test_project.replace('__TEST_NAME__', test.name)
+
+    # files
+    for file in test.files:
+        test_project = test_project.replace('__FILES__', 'ROOT .. "/tests/' + file + '",\n      ' + '__FILES__')
+    test_project = test_project.replace('__FILES__', '')
+
+    # defines
+    if len(test.defines):
+        test_project = test_project.replace('__DEFINES__', '"' + '", "'.join(test.defines) + '"')
+    else:
+        test_project = test_project.replace('__DEFINES__', '')
+
+    # libraries
+    test_project = test_project.replace('__PROJECT_NAME__', config.project)
+    for library in test.libraries:
+        test_project = test_project.replace('__LINKS__', '"' + library.filename + '", ' + '__LINKS__')
+    test_project = test_project.replace('__LINKS__', '')
+
+    return test_project
 # create_premake
 def create_premake(test: Test | None) -> str:
     workspace = read_file(f'{TEMPLATES}/workspace.lua')
+    
+    # name
     workspace = workspace.replace('__PROJECT_NAME__', config.project)
-    workspace = workspace.replace('__START_PROJECT__', test.name if test else config.project)
-    # defines
-    if len(config.defines):
-        workspace = workspace.replace('__DEFINES__', '"' + '", "'.join(config.defines) + '"')
-    else:
-        workspace = workspace.replace('__DEFINES__', '')
 
-    for current_test in [test] if test else config.tests:
-        test_project = read_file(f'{TEMPLATES}/project_test.lua')
-        test_project = test_project.replace('__PROJECT_NAME__', config.project)
-        test_project = test_project.replace('__TEST_NAME__', current_test.name)
-        # files
-        for file in current_test.files:
-            test_project = test_project.replace('__FILES__', 'ROOT .. "/tests/' + file + '", ' + '__FILES__')
-        test_project = test_project.replace('__FILES__', '')
-        # libraries
-        for library in current_test.libraries:
-            test_project = test_project.replace('__LINKS__', '"' + library.filename + '", ' + '__LINKS__')
-        test_project = test_project.replace('__LINKS__', '')
-        # defines
-        if len(current_test.defines):
-            test_project = test_project.replace('__DEFINES__', '"' + '", "'.join(current_test.defines) + '"')
-        else:
-            test_project = test_project.replace('__DEFINES__', '')
-        workspace += '\n'
-        workspace += test_project
+    # start project
+    workspace = workspace.replace('__START_PROJECT__', test.name if test else config.project)
+
+    # defines
+    for define in config.defines:
+        workspace = workspace.replace('__DEFINES__', f'"{define}", __DEFINES__')
+    workspace = workspace.replace('__DEFINES__', '')
+
+    # libraries
+    for library in config.libraries:
+        workspace = workspace.replace('__LINKS__', f'"{library.filename}", __LINKS__')
+    workspace = workspace.replace('__LINKS__', '')
+
+    # tests
+    if test:
+        workspace += '\n' + create_test_project(test)
+    else:
+        for current_test in config.tests:
+            workspace += '\n' + create_test_project(current_test)
+    
     return workspace
 
 # main

@@ -1,0 +1,11 @@
+{
+    "project": "project",
+    "author": "florian burger (git@fburgerdev)",
+    "namespace": "Project",
+
+    "defines": [],
+    "libraries": [
+        { "name": "vecmath" },
+        { "name": "beaver", "defines": [ "BEAVER_LOGGING "] }
+    ]
+}

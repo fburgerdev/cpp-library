@@ -3,41 +3,42 @@
 
 This project allows you to develop C++ libraries quickly and in a standartized manner.
 
+The utility scripts _setup_, _test_, _build_ and _clean_ are currently only for linux.
+
 ## Usage
 ### Example Configuration
 _MY_REPO/cpp-library.json_
 ```json
 {
-    "project": "MyProject",
-    "author": "florian burger (@fburgerdev)",
-    "namespace": "MP",
-    
+    "project": "project",
+    "author": "florian burger (git@fburgerdev)",
+    "namespace": "Project",
+
+    "defines": [],
     "libraries": [
-        {
-            "name": "math",
-            "source": "https://github.com/fburgerdev/math"
-        }
+        { "name": "vecmath" },
+        { "name": "beaver", "defines": [ "BEAVER_LOGGING "] }
     ],
     "tests": [
-        { "name": "test", "files": [ "test.cpp" ]}
+        { "name": "test", "files": [ "test.cpp", "other.cpp" ] }
     ]
 }
 ```
-### Setup Workspace
+### Setup
 ```console
 cpp-library/setup
 ```
 This will create the following files:
 - _.vscode/c_cpp_properties.json_ (syncronized with project include directories)
-- _.vscode/launch.json_ (debug configurations for every test specified in config)
+- _.vscode/launch.json_ (debug configurations for specified and default tests)
 - _src/[project].hpp_ (used by _hppmerge_ to automatically create single include header)
-- _src/common.hpp_ (header file containing frequently used std includes)
+- _src/common.hpp_ and _src/common.cpp_ (precompiled header files containing frequently used std includes with aliases)
 - _LICENSE_ (MIT license, with author and year of creation)
 - _README.md_ (basic structure, automatic dependancy listing)
 
-### Run Tests
+### Test
 ```console
-cpp-library/setup [-t TEST_NAME] [-c CONFIG]
+cpp-library/test [-t TEST_NAME] [-c CONFIG]
 ```
 
 The following compilation steps take place:
@@ -46,7 +47,7 @@ The following compilation steps take place:
 - run _MAKEFILE_
 - executes test program
 
-The single include header will be created by merging the headers in _src/[project].hpp_.
+The single include header will be created by merging the headers in _include/[project]/[project].hpp_.
 
 _Options:_
 - _-t_ specifies the name of the test to be build, defaults to _test_
@@ -64,7 +65,7 @@ Similarly to the _test_ script, the following compilation steps take place:
 
 Compilation will be repeated for all configurations (_debug_, _release_, _dist_).
 
-The single include header will be created by merging the headers in _include/merge.hpp_.
+The single include header will be created by merging the headers in _include/[project]/[project].hpp_.
 
 ### Clean
 ```console
@@ -79,9 +80,11 @@ This command removes the following directories:
 ## Include this Library
 For an existing project, execute
 ```console
-git submodule add git@github.com:fburgerdev/cpp-library.git
+git submodule add https://github.com/fburgerdev/cpp-library.git cpp-library
 ```
 and for a new project, execute the following:
 ```console
-git clone --recursive -b template git@github.com:fburgerdev/cpp-library.git
+git clone --recursive -b template https://github.com/fburgerdev/cpp-library.git newproject
+cd newproject
+git submodule update --remote --recursive cpp-library
 ```

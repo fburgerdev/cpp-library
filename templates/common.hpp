@@ -22,8 +22,10 @@
 #include <unordered_map> // HashMap
 // function
 #include <functional> // function
-// optional
-#include <optional> // Opt
+// utility
+#include <optional> // Optional
+#include <variant> // Variant
+#include <tuple> // Tuple
 // stream
 #include <iostream> // cout, cerr, endl
 #include <fstream> // fstream, ifstream, ofstream
@@ -57,11 +59,15 @@ namespace __NAMESPACE__ {
     using string = std::string;
     using strview = std::string_view;
 
-    // pair / tuple
+    // utility
+    template<typename T>
+    using Optional = std::optional<T>;
     template<typename T1, typename T2>
     using Pair = std::pair<T1, T2>;
     template<typename... TArgs>
     using Tuple = std::tuple<TArgs...>;
+    template<typename... TArgs>
+    using Variant = std::variant<TArgs...>;
 
     // container
     // :: sequential
@@ -108,10 +114,6 @@ namespace __NAMESPACE__ {
 
     // function
     using std::function;
-
-    // templates
-    template<typename T>
-    using Opt = std::optional<T>;
 
     // stream
     // :: iostream

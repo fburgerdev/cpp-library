@@ -23,7 +23,7 @@ workspace "__PROJECT_NAME__"
       ROOT .. "/vendor/*/lib/%{cfg.buildcfg}"
    }
    -- :: libraries
-   links { "__PROJECT_NAME__", __LINKS__ --[[ INSERT ADDITIONAL LINKS HERE ]] }
+   links { __LINKS__ --[[ INSERT ADDITIONAL LINKS HERE ]] }
 
    -- config
    configurations { "debug", "release", "dist" }

@@ -80,7 +80,7 @@ class Config:
             path = Path(filepath)
             if path not in used_tests:
                 test_name = path.name[0:path.name.find('.')]
-                self.tests.append(Test({ "name": test_name, "files": [ path.name ] }, [], []))
+                self.tests.append(Test({ "name": test_name, "files": [ path.name ] }, self.libraries, self.defines))
     # get_test
     def get_test(self, name: str) -> Test:
         for test in self.tests:

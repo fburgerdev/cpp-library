@@ -42,7 +42,8 @@ namespace __NAMESPACE__ {
     // types
     // :: address
     using address = std::size_t;
-    // :: uchar
+    // :: char
+    using schar = signed char;
     using uchar = unsigned char;
     // :: int
     using int8 = std::int8_t;
@@ -99,11 +100,11 @@ namespace __NAMESPACE__ {
     // smart pointers
     template<class T, class... Args>
     auto makeUniquePtr(Args&&... args) {
-        return std::make_unique<T>(forward(args)...);
+        return std::make_unique<T>(forward<Args...>(args)...);
     }
     template<class T, class... Args>
     auto makeSharedPtr(Args&&... args) {
-        return std::make_shared<T>(forward(args)...);
+        return std::make_shared<T>(forward<Args...>(args)...);
     }
     template<typename T>
     using UniquePtr = std::unique_ptr<T>;

@@ -23,7 +23,7 @@ def create_test_project(test: Test) -> str:
     # libraries
     test_project = test_project.replace('__PROJECT_NAME__', config.project)
     for library in test.libraries:
-        test_project = test_project.replace('__LINKS__', '"' + library.filename + '", ' + '__LINKS__')
+        test_project = test_project.replace('__LINKS__', '"' + library.name + '", ' + '__LINKS__')
     test_project = test_project.replace('__LINKS__', '')
 
     return test_project
@@ -44,7 +44,7 @@ def create_premake(test: Test | None) -> str:
 
     # libraries
     for library in config.libraries:
-        workspace = workspace.replace('__LINKS__', f'"{library.filename}", __LINKS__')
+        workspace = workspace.replace('__LINKS__', f'"{library.name}", __LINKS__')
     workspace = workspace.replace('__LINKS__', '')
 
     # tests

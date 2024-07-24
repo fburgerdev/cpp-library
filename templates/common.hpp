@@ -100,11 +100,11 @@ namespace __NAMESPACE__ {
     // smart pointers
     template<class T, class... Args>
     auto makeUniquePtr(Args&&... args) {
-        return std::make_unique<T>(forward<Args...>(args)...);
+        return std::make_unique<T>(forward<Args>(args)...);
     }
     template<class T, class... Args>
     auto makeSharedPtr(Args&&... args) {
-        return std::make_shared<T>(forward<Args...>(args)...);
+        return std::make_shared<T>(forward<Args>(args)...);
     }
     template<typename T>
     using UniquePtr = std::unique_ptr<T>;

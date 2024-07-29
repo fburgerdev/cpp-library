@@ -21,8 +21,8 @@ if create_readme:
             dependancies = "## Dependancies"
             for library in config.libraries:
                 dependancy = f'- {library.name}'
-                if library.url:
-                    dependancy += f', see {library.url}'
+                # if library.url:
+                #     dependancy += f', see {library.url}'
                 dependancies += '\n'
                 dependancies += dependancy
             source = source.replace("__DEPENDANCIES__", dependancies)

@@ -20,6 +20,8 @@
 #include <map> // Map
 #include <set> // HashSet
 #include <unordered_map> // HashMap
+// filesystem
+#include <filesystem> // Filepath, stdf
 // function
 #include <functional> // function
 // utility
@@ -92,6 +94,10 @@ namespace __NAMESPACE__ {
     using HashSet = std::unordered_set<T>;
     template<typename Key, typename Value>
     using HashMap = std::unordered_map<Key, Value>;
+
+    // filesystem
+    using Filepath = std::filesystem::path;
+    using stdf = std::filesystem;
 
     // move semantics
     using std::forward;

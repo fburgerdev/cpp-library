@@ -97,7 +97,7 @@ namespace __NAMESPACE__ {
 
     // filesystem
     using Filepath = std::filesystem::path;
-    using stdf = std::filesystem;
+    namespace stdf = std::filesystem;
 
     // move semantics
     using std::forward;

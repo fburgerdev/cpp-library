@@ -84,6 +84,11 @@ namespace __NAMESPACE__ {
     using Queue = std::queue<T>;
     template<typename T>
     using Deque = std::deque<T>;
+    // :: linked list
+    template<typename T>
+    using LinkedList = std::forward_list<T>;
+    template<typename T>
+    using DLinkedList = std::list<T>;
     // :: tree
     template<typename T>
     using Set = std::set<T>;
